@@ -27,9 +27,9 @@
         <div class="product-list">
           <h3>商品一覧</h3>
           <div class="product-item">
-            <span>商品ID</span>
-            <span>商品A</span>
-            <span>¥1000</span>
+            <span>${item.ItemID}</span>
+            <span>${item.ItemName}</span>
+            <span>¥${item.ItemPrice}</span>
             <button class="button">詳細</button>
             <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
           </div>
