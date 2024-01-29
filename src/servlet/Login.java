@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 			// ログインしてトップページ（今回はVoD一覧）へリダイレクト
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
-			response.sendRedirect("/VoDSystem_ex0801/VideoList");
+			response.sendRedirect("/user-admin.jsp");
 		} else {
 			// エラー時はエラーメッセージを追加し自分へ戻る
 			request.setAttribute("msg", "ログインに失敗しました");
