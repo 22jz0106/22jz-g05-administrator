@@ -1,18 +1,24 @@
 package model;
 
 public class item {
-	String ItemID;
+	int ItemID;
 	String ItemName;
-	int ItemPrice;
+	double ItemPrice;
 	
-	public String getItemID() {
+	public int getItemID() {
 		return ItemID;
 	}
 	public String getItemName() {
 		return ItemName;
 	}
-	public int getItemPrice() {
+	public double getItemPrice() {
 		return ItemPrice;
+	}
+	
+	public item(int ItemID,String ItemName, double ItemPrice) {
+		this.ItemID = ItemID;
+		this.ItemName = ItemName;
+		this.ItemPrice = ItemPrice;
 	}
 
 }
