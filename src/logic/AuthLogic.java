@@ -13,22 +13,16 @@ import model.User;
  *
  */
 public class AuthLogic {
-	/**
-	 * ログイン処理を行う
-	 * @param email
-	 * @param password
-	 * @return 成功時はログインしたユーザ、失敗時はnull
-	 */
-	public User login(String email, String password) {
-		UserDAO dao = new UserDAO();
-		User user = dao.findByEmail(email);
-		
-		if ((user != null) && (BCrypt.checkpw(password, user.getPassword()))) {//今入力されたパスワードとuserにあるパスワードを比較
-			return user;
-		}
-		
-		return null;
-	}
+    public User login(String email, String password) {
+        UserDAO dao = new UserDAO();
+        User user = dao.findByEmail(email);
+
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            return user;
+        }
+
+        return null;
+    }
 	
 	/**
 	 * ログアウト処理を行う

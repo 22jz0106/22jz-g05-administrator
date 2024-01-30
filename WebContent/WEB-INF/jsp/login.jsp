@@ -14,7 +14,8 @@
     <div class="login-container">
         <h2 class="login-title">管理者ログイン</h2>
         <div class="login-form">
-            <form>
+          <form action="Login" method="post">
+            >
                 <div class="form-group">
                     <label for="username">管理者ID:</label>
                     <input type="text" id="username" name="username" required>

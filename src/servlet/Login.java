@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
 		// すでにログイン済みならビデオ一覧へリダイレクト
 		User loginUser = (User)request.getSession().getAttribute("loginUser");
 		if (loginUser != null) {//loginユーザがnullではないならすでにログイン済み
-			response.sendRedirect("VideoList");
+			response.sendRedirect("user-admin.jsp");
 		}
 		
 		// フォワード
@@ -40,17 +40,17 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ログイン
-		String email = request.getParameter("email");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		AuthLogic logic = new AuthLogic();
-		User user = logic.login(email, password);
+		User user = logic.login(username, password);
 		
 		if (user != null) {
 			// ログインしてトップページ（今回はVoD一覧）へリダイレクト
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
-			response.sendRedirect("/user-admin.jsp");
+			response.sendRedirect("Itemadmin");
 		} else {
 			// エラー時はエラーメッセージを追加し自分へ戻る
 			request.setAttribute("msg", "ログインに失敗しました");
