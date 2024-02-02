@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="assets/css/style.css">yle.css">
+<link rel="stylesheet" href="assets/css/style.css">
   <title>商品 詳細画面</title>
 </head>
 
@@ -14,26 +14,29 @@
   <div class="side">
     <ul>
       <li><a href="#"><img class="side-img" src="../../shinor/img/Header.PNG" alt=""></a></li>
-      <li><a href="../注文データ一覧画面/index.html">注文データ一覧</a></li>
-      <li><a href="../商品画面/index.html">商品管理</a></li>
-      <li><a href="../ユーザ管理画面/index.html">ユーザ管理</a></li>
+       <li><a href="Orderadmin">注文データ一覧</a></li>
+      <li><a href="Itemadmin">商品管理</a></li>
+      <li><a href="Useradmin">ユーザ管理</a></li>
       <li><a href="../review画面/index.html">review</a></li>
     </ul>
   </div>
   <div id="product-details">
     <h2>商品詳細</h2>
-    <form id="product-form">
+    <form action="ItemInfo" id="product-form" method="post">
       <label for="productName">商品名:</label>
       <input type="text" id="productName" name="productName" required>
 
-      <label for="productCode">商品コード:</label>
+    <%--<label for="productCode">商品コード:</label>
       <input type="text" id="productCode" name="productCode" required>
-
+ --%>  
       <label for="price">価格:</label>
       <input type="number" id="price" name="price" value="1000" required>
 
       <label for="stockQuantity">在庫数:</label>
       <input type="number" id="stockQuantity" name="stockQuantity" min="0" value="0" required>
+      
+      <label for="stockQuantity">:</label>
+      <input type="number" id="stockQuantity" name="FEATURED_PRODUCTS" min="0" max="1" value="0" required>
 
       <label for="description">説明:</label>
       <textarea id="description" name="description" rows="4" required></textarea>
@@ -47,9 +50,18 @@
         <option value="silver">シルバー</option>
       </select>
 
-      <img id="previewImage" src="" alt="商品画像">
+      <label for="productName">画像URL:</label>
+      <input type="text" id="productName" name="image_url" required>
+      
+      <label for="stockQuantity">:</label>
+      <input type="number" id="stockQuantity" name="PRODUCT_TYPE" min="0" max="1" value="0" required>
+      
+      
+      <label for="stockQuantity">:</label>
+      <input type="number" id="stockQuantity" name="new_item" min="0" max="1" value="0" required>
+      
 
-      <button type="button" onclick="updateProductDetails()">更新</button>
+      <button type="submit" onclick="updateProductDetails()">更新</button>
     </form>
   </div>
   <script>

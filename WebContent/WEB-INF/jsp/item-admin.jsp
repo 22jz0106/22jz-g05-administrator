@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -15,9 +16,9 @@
     <div class="side">
       <ul>
         <li><a href="#"><img class="side-img" src="../../shinor/img/Header.PNG" alt=""></a></li>
-        <li><a href="../注文データ一覧画面/index.html">注文データ一覧</a></li>
-        <li><a href="../商品画面/index.html">商品管理</a></li>
-        <li><a href="../ユーザ管理画面/index.html">ユーザ管理</a></li>
+        <li><a href="Orderadmin">注文データ一覧</a></li>
+      <li><a href="Itemadmin">商品管理</a></li>
+      <li><a href="Useradmin">ユーザ管理</a></li>
         <li><a href="../review画面/index.html">review</a></li>
       </ul>
     </div>
@@ -26,18 +27,19 @@
       <div class="product-form">
         <div class="product-list">
           <h3>商品一覧</h3>
-          <c:forEAch var="Items" items="${list}
-          <div class="product-item">
-            <span>${item.ItemID}</span>
-            <span>${item.ItemName}</span>
-            <span>¥${item.ItemPrice}</span>
-            <button class="button">詳細</button>
-            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-          </div>
+          <c:forEach var="item" items="${list}">
+	          <div class="product-item">
+	            <span>${Item.ItemId}</span>
+	            <span>${Item.ItemName}</span>
+	            <span>${Item.ItemPrice}</span>
+	            <button class="button">詳細</button>
+	            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
+	          </div>
           </c:forEach>
         </div>
         <button><a href="../商品追加画面/index.html">商品登録する</a></button>
       </div>
+      <p>${ list }</p>
     </div>
   </main>
 </body>

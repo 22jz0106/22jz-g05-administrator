@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>ユーザー管理画面</title>
 </head>
 
@@ -13,9 +13,9 @@
   <div class="side">
     <ul>
       <li><a href="#"><img class="side-img" src="../../shinor/img/Header.PNG" alt=""></a></li>
-      <li><a href="../注文データ一覧画面/index.html">注文データ一覧</a></li>
-      <li><a href="../商品画面/index.html">商品管理</a></li>
-      <li><a href="../ユーザ管理画面/index.html">ユーザ管理</a></li>
+      <li><a href="Orderadmin">注文データ一覧</a></li>
+      <li><a href="Itemadmin">商品管理</a></li>
+      <li><a href="Useradmin">ユーザ管理</a></li>
       <li><a href="../review画面/index.html">review</a></li>
     </ul>
   </div>
