@@ -34,8 +34,11 @@ public class UseradminDAO {
     public Useradmin rs2model(ResultSet rs) throws SQLException{
     	String username = rs.getString("name");
         String furigana = rs.getString("name_furigana");
+        String adress = rs.getString("user_adress");
+        int phonnumber = rs.getInt("phonnumber");
         String password = rs.getString("password");
         
-		return new Useradmin(username, furigana, password);
+		
+		return new Useradmin(username, furigana,adress , phonnumber, password);
     }
 }

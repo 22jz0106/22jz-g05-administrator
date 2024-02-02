@@ -82,6 +82,7 @@ public class UserDAO {
 			// データをリストに格納
 			if (rs.next()) {
 				user = rs2model(rs);
+				System.out.println(user);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -136,8 +137,8 @@ public class UserDAO {
 		int id = rs.getInt("id");
 		String email = rs.getString("email");
 		String password = rs.getString("password");
-		LocalDateTime createdAt = rs.getTimestamp("created_at").toLocalDateTime();
-		LocalDateTime updatedAt = rs.getTimestamp("updated_at").toLocalDateTime();
+		LocalDateTime createdAt = rs.getTimestamp("ADDED_DATE").toLocalDateTime();
+		LocalDateTime updatedAt = rs.getTimestamp("UPDATE_DATE").toLocalDateTime();
 
 		return new User(id, email, password, createdAt, updatedAt);
 	}

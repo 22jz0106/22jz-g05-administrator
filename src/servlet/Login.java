@@ -43,6 +43,9 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		System.out.println("username:" + username);
+		System.out.println("password:" + password);
+		
 		AuthLogic logic = new AuthLogic();
 		User user = logic.login(username, password);
 		
@@ -54,6 +57,7 @@ public class Login extends HttpServlet {
 		} else {
 			// エラー時はエラーメッセージを追加し自分へ戻る
 			request.setAttribute("msg", "ログインに失敗しました");
+			System.out.println("ログインに失敗しました");
 			doGet(request, response);
 		}
 	}

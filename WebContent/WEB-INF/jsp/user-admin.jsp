@@ -25,23 +25,23 @@
       <div class="user">
         <div class="user-info">
           <label>名前:</label>
-          <span>山田 太郎</span>
+          <span>${Useradmin.username}</span>
         </div>
         <div class="user-info">
           <label>フリガナ:</label>
-          <span>ヤマダ タロウ</span>
+          <span>${useradmin.furigana }</span>
         </div>
         <div class="user-info">
           <label>住所:</label>
-          <span>東京都港区1-2-3</span>
+          <span>${user.admin.adress }</span>
         </div>
         <div class="user-info">
           <label>電話番号:</label>
-          <span>090-1234-5678</span>
+          <span>${useradmin.phonnumber }</span>
         </div>
         <div class="user-info">
           <label>パスワード:</label>
-          <span>*********</span>
+          <span>${useradmin.password }</span>
         </div>
       </div>
 
