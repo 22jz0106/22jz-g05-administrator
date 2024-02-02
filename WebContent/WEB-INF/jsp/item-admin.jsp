@@ -29,9 +29,9 @@
           <h3>商品一覧</h3>
           <c:forEach var="item" items="${list}">
 	          <div class="product-item">
-	            <span>${Item.ItemId}</span>
-	            <span>${Item.ItemName}</span>
-	            <span>${Item.ItemPrice}</span>
+	            <p>${item.ItemID}</p>
+	            <p>${item.ItemName}</p>
+	            <p>${item.ItemPrice}</p>
 	            <button class="button">詳細</button>
 	            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
 	          </div>
@@ -39,7 +39,7 @@
         </div>
         <button><a href="../商品追加画面/index.html">商品登録する</a></button>
       </div>
-      <p>${ list }</p>
+     <!--  <p>${ list }</p>--> 
     </div>
   </main>
 </body>

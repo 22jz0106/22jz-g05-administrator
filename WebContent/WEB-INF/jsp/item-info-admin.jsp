@@ -45,10 +45,7 @@
       <input type="text" id="size" name="size">
 
       <label for="color">色:</label>
-      <select name="color">
-        <option value="gold">ゴールド</option>
-        <option value="silver">シルバー</option>
-      </select>
+      <input type="text" id="item_color" name="color" required>
 
       <label for="productName">画像URL:</label>
       <input type="text" id="productName" name="image_url" required>

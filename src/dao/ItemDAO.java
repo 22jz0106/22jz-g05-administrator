@@ -51,7 +51,7 @@ public class ItemDAO {
 		DBManager manager = DBManager.getInstance();
 		try (Connection cn = manager.getConnection()) {
 			// プレースホルダで変数部分を定義
-			String sql = "SELECT * FROM Items WHERE id = ?";
+			String sql = "SELECT * FROM merchandise WHERE id = ?";
 			PreparedStatement stmt = cn.prepareStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -73,11 +73,11 @@ public class ItemDAO {
 	 * @return 変換後のデータ
 	 */
 	private item rs2model(ResultSet rs) throws SQLException {
-		int ItemId = rs.getInt("id");
+		int ItemID = rs.getInt("id");
 		String ItemName = rs.getString("PRODUCT_NAME");
-		double ItemPrice = rs.getDouble("Price");
+		int ItemPrice = rs.getInt("Price");
 
-		return new item(ItemId, ItemName, ItemPrice);
+		return new item(ItemID, ItemName, ItemPrice);
 	}
 
 	public void set(String productName, String productCode, String price,String stock,String FEATURED_PRODUCTS,
@@ -95,22 +95,22 @@ public class ItemDAO {
 			String sql = "INSERT INTO merchandise (PRODUCT_NAME,PRICE,STOCK,DESCRIPTION_OF_ITEM,image_url,PRODUCT_TYPE,new_item,FEATURED_PRODUCTS) VALUES(?,?,?,?,?,?,?,?)";
 			PreparedStatement stmt = cn.prepareStatement(sql);
 			
-			stmt.setString(1,"name");
+			stmt.setString(1,productName);
 //			stmt.setInt(2, pc);
-			stmt.setInt(2, 1);
-			stmt.setInt(3, 1);
-			stmt.setString(4, "dis");
+			stmt.setInt(2, pr);
+			stmt.setInt(3, st);
+			stmt.setString(4, description);
 			//stmt.setString(5, image_url);
-			stmt.setString(5, "img");
-			stmt.setInt(6,1);
-			stmt.setInt(7,1);
-			stmt.setInt(8, 1);
+			stmt.setString(5, image_url);
+			stmt.setInt(6,ptype);
+			stmt.setInt(7,ni);
+			stmt.setInt(8, fp);
 			System.out.println("succses");
-			int Size = Integer.parseInt(size);
-			int Color = Integer.parseInt(color);
+//			int Size = Integer.parseInt(size);
+//			int Color = Integer.parseInt(color);
 //			int Stock = Integer.parseInt(stock);
-			setsize(Size);
-			setcolor(Color);
+//			setsize(Size);
+//			setcolor(Color);
 			
 			stmt.executeQuery();
 			
@@ -121,35 +121,35 @@ public class ItemDAO {
 
 	}
 
-	public void setsize(int size) {
-		DBManager manager = DBManager.getInstance();
-		try (Connection cn = manager.getConnection()) {
-			String sql = "INSERT INTO item_size(size) VALUES(?)";
-			PreparedStatement stmt = cn.prepareStatement(sql);
+//	public void setsize(int size) {
+//		DBManager manager = DBManager.getInstance();
+//		try (Connection cn = manager.getConnection()) {
+//			String sql = "INSERT INTO item_size(size) VALUES(?)";
+//			PreparedStatement stmt = cn.prepareStatement(sql);
+//
+//			stmt.setInt(1, size);
+//
+//			stmt.executeQuery();
+//
+//			// データをリストに格納
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
-			stmt.setInt(1, size);
-
-			stmt.executeQuery();
-
-			// データをリストに格納
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void setcolor(int color) {
-		DBManager manager = DBManager.getInstance();
-		try (Connection cn = manager.getConnection()) {
-			String sql = "INSERT INTO item_color(color) VALUES(?)";
-			PreparedStatement stmt = cn.prepareStatement(sql);
-
-			stmt.setInt(1, color);
-
-			stmt.executeQuery();
-
-			// データをリストに格納
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void setcolor(int color) {
+//		DBManager manager = DBManager.getInstance();
+//		try (Connection cn = manager.getConnection()) {
+//			String sql = "INSERT INTO item_color(color) VALUES(?)";
+//			PreparedStatement stmt = cn.prepareStatement(sql);
+//
+//			stmt.setInt(1, color);
+//
+//			stmt.executeQuery();
+//
+//			// データをリストに格納
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

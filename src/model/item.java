@@ -1,9 +1,11 @@
 package model;
 
-public class item {
-	int ItemID;
-	String ItemName;
-	double ItemPrice;
+import java.io.Serializable;
+
+public class item  implements Serializable {
+	private int ItemID;
+	private String ItemName;
+	private int ItemPrice;
 	
 	public int getItemID() {
 		return ItemID;
@@ -11,11 +13,11 @@ public class item {
 	public String getItemName() {
 		return ItemName;
 	}
-	public double getItemPrice() {
+	public int getItemPrice() {
 		return ItemPrice;
 	}
 	
-	public item(int ItemID,String ItemName, double ItemPrice) {
+	public item(int ItemID, String ItemName, int ItemPrice) {
 		this.ItemID = ItemID;
 		this.ItemName = ItemName;
 		this.ItemPrice = ItemPrice;
