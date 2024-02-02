@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.item;
+import model.Item;
 
 /**
  * ビデオ用DAO
@@ -19,18 +20,19 @@ public class ItemDAO {
 	 * ビデオテーブルのデータをすべて取得するメソッド
 	 * @return ビデオデータ
 	 */
-	public List<item> get() {
-		List<item> Itemlist = new ArrayList<>();
+	public List<Item> get() {
+		List<Item> Itemlist = new ArrayList<>();
 
 		DBManager manager = DBManager.getInstance();
 		try (Connection cn = manager.getConnection()) {
 			String sql = "SELECT * FROM merchandise";
 			PreparedStatement stmt = cn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
+			
 
 			// データをリストに格納
 			while (rs.next()) {
-				item video = rs2model(rs);
+				Item video = rs2model(rs);
 				Itemlist.add(video);
 			}
 		} catch (SQLException e) {
@@ -46,8 +48,8 @@ public class ItemDAO {
 	 * @return 発見したビデオデータ、見つからなければnull
 	 */
 
-	public item find(int id) {
-		item video = null;
+	public Item find(int id) {
+		Item video = null;
 		DBManager manager = DBManager.getInstance();
 		try (Connection cn = manager.getConnection()) {
 			// プレースホルダで変数部分を定義
@@ -72,12 +74,21 @@ public class ItemDAO {
 	 * @param rs 変換前のデータ
 	 * @return 変換後のデータ
 	 */
-	private item rs2model(ResultSet rs) throws SQLException {
+	private Item rs2model(ResultSet rs) throws SQLException {
 		int ItemID = rs.getInt("id");
 		String ItemName = rs.getString("PRODUCT_NAME");
 		int ItemPrice = rs.getInt("Price");
+		int ItemStock = rs.getInt("STOCK");
+		String ItemDESCRIPTION = rs.getString("DESCRIPTION_OF_ITEM");
+		String Itemimage_url = rs.getString("image_url");
+		int PRODUCT_TYPE = rs.getInt("PRODUCT_TYPE");
+		int new_item = rs.getInt("new_item");
+		int FEATURED_PRODUCTS = rs.getInt("FEATURED_PRODUCTS");
+		LocalDateTime cdate = rs.getTimestamp("ADDED_DATE").toLocalDateTime();
+		LocalDateTime udate = rs.getTimestamp("UPDATE_DATE").toLocalDateTime();
+		
 
-		return new item(ItemID, ItemName, ItemPrice);
+		return new Item(ItemID, ItemName, ItemPrice,ItemStock,ItemDESCRIPTION,Itemimage_url,PRODUCT_TYPE,new_item,FEATURED_PRODUCTS, cdate, udate);
 	}
 
 	public void set(String productName, String productCode, String price,String stock,String FEATURED_PRODUCTS,

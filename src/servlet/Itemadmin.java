@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ItemDAO;
+import model.Item;
 
 /**
  * Servlet implementation class Itemadmin
@@ -27,9 +28,10 @@ public class Itemadmin extends HttpServlet {
 	    String forward = "/WEB-INF/jsp/item-admin.jsp"; 
 	    
 	    ItemDAO dao = new ItemDAO();
-	    List<model.item> list = dao.get();
+	    List<Item> list = dao.get();
+	    System.out.println(list);
 	    request.setAttribute("list", list);
-	    
+	   
 	    
 //	    System.out.println(((item) list).getItemID());
 //	    for(item it : list) {
