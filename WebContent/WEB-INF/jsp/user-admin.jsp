@@ -25,7 +25,7 @@
       <div class="user">
         <div class="user-info">
           <label>名前:</label>
-          <span>${Useradmin.username}</span>
+          <span>${useradmin.username}</span>
         </div>
         <div class="user-info">
           <label>フリガナ:</label>
@@ -33,7 +33,7 @@
         </div>
         <div class="user-info">
           <label>住所:</label>
-          <span>${user.admin.adress }</span>
+          <span>${useradmin.adress }</span>
         </div>
         <div class="user-info">
           <label>電話番号:</label>

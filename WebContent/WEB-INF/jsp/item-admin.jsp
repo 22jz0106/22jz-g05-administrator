@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
   <title>商品画面</title>
 </head>
 
@@ -26,6 +26,7 @@
       <div class="product-form">
         <div class="product-list">
           <h3>商品一覧</h3>
+          <c:forEAch var="Items" items="${list}
           <div class="product-item">
             <span>${item.ItemID}</span>
             <span>${item.ItemName}</span>
@@ -33,42 +34,7 @@
             <button class="button">詳細</button>
             <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
           </div>
-          <div class="product-item">
-            <span>商品ID</span>
-            <span>商品A</span>
-            <span>¥1000</span>
-            <button class="button">詳細</button>
-            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-          </div>
-          <div class="product-item">
-            <span>商品ID</span>
-            <span>商品A</span>
-            <span>¥1000</span>
-            <button class="button">詳細</button>
-            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-          </div>
-          <div class="product-item">
-            <span>商品ID</span>
-            <span>商品A</span>
-            <span>¥1000</span>
-            <button class="button">詳細</button>
-            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-          </div>
-          <div class="product-item">
-            <span>商品ID</span>
-            <span>商品A</span>
-            <span>¥1000</span>
-            <button class="button">詳細</button>
-            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-          </div>
-          <div class="product-item">
-            <span>商品ID</span>
-            <span>商品A</span>
-            <span>¥1000</span>
-            <button class="button">詳細</button>
-            <button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-          </div>
-          <!-- 追加の商品アイテムをここに追加 -->
+          </c:forEach>
         </div>
         <button><a href="../商品追加画面/index.html">商品登録する</a></button>
       </div>

@@ -7,21 +7,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Useradmin;
+import model.Orderadmin;
 
-public class UseradminDAO {
+public class OrderDAO {
     // データベースへの接続やクエリの実行はこのクラスで行う
 
-    public List<Useradmin> getAllUsers() {
-        List<Useradmin> userList = new ArrayList<>();
+    public List<Orderadmin> getAllUsers() {
+        List<Orderadmin> userList = new ArrayList<>();
         DBManager manager = DBManager.getInstance();
         try (Connection cn = manager.getConnection()){
-        		String sql = "SELECT * FROM users";
+        		String sql = "SELECT * FROM Orderadmin";
         		PreparedStatement stmt = cn.prepareStatement(sql);
         		ResultSet rs = stmt.executeQuery();
         		
             while (rs.next()) {
-            	Useradmin ua = rs2model(rs);
+            	Orderadmin ua = rs2model(rs);
                 userList.add(ua);
             }
         } catch (SQLException e) {
@@ -31,14 +31,13 @@ public class UseradminDAO {
         return userList;
     }
     
-    public Useradmin rs2model(ResultSet rs) throws SQLException{
-    	String username = rs.getString("name");
-        String furigana = rs.getString("name_furigana");
-        String adress = rs.getString("user_adress");
-        int phonnumber = rs.getInt("phonnumber");
-        String password = rs.getString("password");
+    public Orderadmin rs2model(ResultSet rs) throws SQLException{
+    	String UserName = rs.getString("UserName");
+        int ItemSUM = rs.getInt("ItemSUM");
+        int PriceSUM = rs.getInt("PriceSUM");
+        String PaymentStatus = rs.getNString("PaymentStatus");
         
 		
-		return new Useradmin(username, furigana,adress , phonnumber, password);
+		return new Orderadmin(UserName, ItemSUM , PriceSUM, PaymentStatus);
     }
 }
