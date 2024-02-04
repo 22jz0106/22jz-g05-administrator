@@ -15,6 +15,9 @@
         <h2 class="login-title">管理者ログイン</h2>
         <div class="login-form">
           <form action="Login" method="post">
+           <% if (request.getAttribute("msg") != null) { %>
+            <p style="color: red;"><%= request.getAttribute("msg") %></p>
+        <% } %>
                 <div class="form-group">
                     <label for="username">管理者ID:</label>
                     <input type="text" id="username" name="username" required>

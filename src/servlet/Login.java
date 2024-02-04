@@ -57,8 +57,8 @@ public class Login extends HttpServlet {
 		} else {
 			// エラー時はエラーメッセージを追加し自分へ戻る
 			request.setAttribute("msg", "ログインに失敗しました");
-			System.out.println("ログインに失敗しました");
-			doGet(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);	
 		}
 	}
 

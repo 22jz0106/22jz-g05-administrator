@@ -35,7 +35,7 @@ public class Itemadmin extends HttpServlet {
 	    
 //	    System.out.println(((item) list).getItemID());
 //	    for(item it : list) {
-//	    	int name = it.getItemID();
+//	    	int name = it.getItemID();3
 //	    	System.out.println("id:" + name);
 //	    	request.setAttribute("name", name);
 //	    	
