@@ -1,5 +1,5 @@
 package model;
-public class Useradmin {
+public class UserAdmin {
 	String username;
      String furigana;
      String adress;
@@ -30,7 +30,7 @@ public String getUsername() {
     // コンストラクタ、ゲッター、セッターなどを追加
 
     // 例:
-    public Useradmin(String username, String furigana, String adress, int phonnumber, String password) {
+    public UserAdmin(String username, String furigana, String adress, int phonnumber, String password) {
         this.username = username;
         this.furigana = furigana;
         this.adress = adress;

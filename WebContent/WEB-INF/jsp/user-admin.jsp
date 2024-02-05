@@ -12,42 +12,55 @@
 
 <body class="user-admin">
   <div class="side">
-    <ul>
-      <li><a href="#"><img class="side-img" src="../../shinor/img/Header.PNG" alt=""></a></li>
-      <li><a href="Orderadmin">注文データ一覧</a></li>
-      <li><a href="Itemadmin">商品管理</a></li>
-      <li><a href="Useradmin">ユーザ管理</a></li>
-      <li><a href="../review画面/index.html">review</a></li>
-    </ul>
+    <ul class="sidenav">
+    <li><img class="admin-header" src="../../shinor/img/Header.PNG" alt=""></li>
+    <li><a class="active" href="User-Admin">ユーザ管理</a></li>
+    <li><a href="Itemadmin">商品一覧管理</a></li>
+    <li><a href="Orderadmin">注文データ一覧</a></li>
+    <li><a href="#about">Logout</a></li>
+  </ul>
   </div>
   <div class="container">
     <h1 class="user-h1">ユーザー管理画面</h1>
-
+    <input type="text" id="orderSearchInput" oninput="filterOrders()" placeholder="ユーザーを検索...">
+<c:forEach var="UserAdmin" items="${user}">
       <div class="user">
         <div class="user-info">
           <label>名前:</label>
-          <span>${useradmin.username}</span>
+          <span>${UserAdmin.username}</span>
         </div>
         <div class="user-info">
           <label>フリガナ:</label>
-          <span>${useradmin.furigana }</span>
+          <span>${UserAdmin.furigana}</span>
         </div>
         <div class="user-info">
           <label>住所:</label>
-          <span>${useradmin.adress }</span>
+          <span>${UserAdmin.adress}</span>
         </div>
         <div class="user-info">
           <label>電話番号:</label>
-          <span>${useradmin.phonnumber }</span>
-        </div>
-        <div class="user-info">
-          <label>パスワード:</label>
-          <span>${useradmin.password }</span>
+          <span>${UserAdmin.username}</span>
         </div>
       </div>
-
+</c:forEach>
   </div>
+<script>
+    function filterOrders() {
+      var input, filter, userItems, i, txtValue;
+      input = document.getElementById("orderSearchInput");
+      filter = input.value.toUpperCase();
+      userItems = document.querySelectorAll('.user');
 
+      userItems.forEach(function (item) {
+        txtValue = item.textContent || item.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>

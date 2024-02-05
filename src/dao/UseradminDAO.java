@@ -7,38 +7,44 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Useradmin;
+import model.UserAdmin;
 
 public class UseradminDAO {
     // データベースへの接続やクエリの実行はこのクラスで行う
 
-    public List<Useradmin> getAllUsers() {
-        List<Useradmin> userList = new ArrayList<>();
+    public List<UserAdmin> getAllUsers() {
+        List<UserAdmin> userList = new ArrayList<>();
         DBManager manager = DBManager.getInstance();
         try (Connection cn = manager.getConnection()){
         		String sql = "SELECT * FROM users";
         		PreparedStatement stmt = cn.prepareStatement(sql);
+        		System.out.println("getAllUsers");
         		ResultSet rs = stmt.executeQuery();
+        		System.out.println("execute");
         		
+        		int l = 1;
             while (rs.next()) {
-            	Useradmin ua = rs2model(rs);
+            	UserAdmin ua = rs2model(rs);
                 userList.add(ua);
+                System.out.println("loop"+ l);
+                l++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Exception");
         }
 
         return userList;
     }
     
-    public Useradmin rs2model(ResultSet rs) throws SQLException{
+    public UserAdmin rs2model(ResultSet rs) throws SQLException{
     	String username = rs.getString("name");
         String furigana = rs.getString("name_furigana");
-        String adress = rs.getString("user_adress");
-        int phonnumber = rs.getInt("phonnumber");
+        String adress = rs.getString("address");
+        int phonnumber = rs.getInt("id");
         String password = rs.getString("password");
         
 		
-		return new Useradmin(username, furigana,adress , phonnumber, password);
+		return new UserAdmin(username, furigana,adress , phonnumber, password);
     }
 }

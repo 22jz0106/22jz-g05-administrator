@@ -30,7 +30,10 @@ public class Itemadmin extends HttpServlet {
 	    ItemDAO dao = new ItemDAO();
 	    List<Item> list = dao.get();
 	    System.out.println(list);
-	    request.setAttribute("list", list);
+	    request.setAttribute("item_list", list);
+	    for(Item item : list) {
+	    	System.out.println(item.getItemName());
+	    }
 	   
 	    
 //	    System.out.println(((item) list).getItemID());

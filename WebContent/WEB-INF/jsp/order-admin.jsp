@@ -27,7 +27,7 @@
           <h3>注文データ一覧</h3>
           <input type="text" id="orderSearchInput" oninput="filterOrders()" placeholder="注文を検索...">
           <div class="order-item">
-            <p><strong>注文ID:</strong> 001</p>
+            <p><strong>注文ID:</strong> ${Orderadmin.UserName}</p>
             <p><strong>顧客名:</strong> 顧客A</p>
             <p><strong>注文日時:</strong> 2024-01-27 10:30</p>
             <p><strong>合計数量:</strong> 5</p>

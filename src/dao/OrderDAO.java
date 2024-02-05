@@ -16,7 +16,7 @@ public class OrderDAO {
         List<Orderadmin> userList = new ArrayList<>();
         DBManager manager = DBManager.getInstance();
         try (Connection cn = manager.getConnection()){
-        		String sql = "SELECT * FROM 購入履歴の表";//これとってくれば、注文もユーザーも合計金額も全部とってこれるくね？;
+        		String sql = "SELECT * FROM purchase_history";//これとってくれば、注文もユーザーも合計金額も全部とってこれるくね？;
         		PreparedStatement stmt = cn.prepareStatement(sql);
         		ResultSet rs = stmt.executeQuery();
         		
