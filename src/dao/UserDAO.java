@@ -43,8 +43,8 @@ public class UserDAO {
 	 * @param id 主キーの値
 	 * @return 発見したデータ。なければnull
 	 */
-	public User find(int id) {
-		User user = null;
+	public List<User> find(int id) {
+		List<User> list = new ArrayList<>();
 		DBManager manager = DBManager.getInstance();
 		try(Connection cn = manager.getConnection()) {
 			// プレースホルダで変数部分を定義
@@ -54,14 +54,15 @@ public class UserDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			// データをリストに格納
-			if (rs.next()) {
-				user = rs2model(rs);
+			while(rs.next()) {
+				User user = rs2model(rs);
+				list.add(user);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return  user;
+		return list;
 	}
 
 	/**
@@ -135,11 +136,12 @@ public class UserDAO {
 	 */
 	private User rs2model(ResultSet rs) throws SQLException {
 		int id = rs.getInt("id");
+		String name = rs.getString("name");
 		String email = rs.getString("email");
 		String password = rs.getString("password");
 		LocalDateTime createdAt = rs.getTimestamp("ADDED_DATE").toLocalDateTime();
 		LocalDateTime updatedAt = rs.getTimestamp("UPDATE_DATE").toLocalDateTime();
 
-		return new User(id, email, password, createdAt, updatedAt);
+		return new User(id,name, email, password, createdAt, updatedAt);
 	}
 }

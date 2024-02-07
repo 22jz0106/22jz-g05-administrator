@@ -53,8 +53,37 @@ public class Itemadmin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text.html; charset=UTF-8");
+		String action = request.getParameter("action");
+		if("add".equals(action)) {
+		
+		String productName = request.getParameter("productName");
+		String productCode = request.getParameter("productCode");
+		String price = request.getParameter("price");
+		String stock = request.getParameter("stockQuantity");
+		String FEATURED_PRODUCTS = request.getParameter("FEATURED_PRODUCTS");
+		String description = request.getParameter("description");
+		String size = request.getParameter("size");
+		String color = request.getParameter("color");
+		String image_url = request.getParameter("image_url");
+		String PRODUCT_TYPE = request.getParameter("PRODUCT_TYPE");
+		String new_item = request.getParameter("new_item");
+		
+		System.out.println("stock : " + stock);
+		System.out.println("color : " + color);
+		System.out.println(price);
+		
+		ItemDAO item = new ItemDAO();
+		item.set(productName,productCode,price,stock,FEATURED_PRODUCTS,description,size,color,image_url, PRODUCT_TYPE, new_item);
+		} else if ("delete".equals(action)) {
+		    int itemId = Integer.parseInt(request.getParameter("itemId"));
+
+		    ItemDAO dao = new ItemDAO();
+		    dao.deleteItem(itemId);
+		}
+
+		response.sendRedirect("Itemadmin");
 		doGet(request, response);
 	}
-
 }

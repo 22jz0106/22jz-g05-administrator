@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +33,12 @@ public class OrderDAO {
     }
     
     public Orderadmin rs2model(ResultSet rs) throws SQLException{
-    	String UserName = rs.getString("UserName");
-        int ItemSUM = rs.getInt("ItemSUM");
-        int PriceSUM = rs.getInt("PriceSUM");
-        String PaymentStatus = rs.getNString("PaymentStatus");
+    	int user_id = rs.getInt("User_id");
+        int item_id = rs.getInt("item_id");
+        LocalDateTime date = rs.getTimestamp("ADDED_DATE").toLocalDateTime();
         
 		
-		return new Orderadmin(UserName, ItemSUM , PriceSUM, PaymentStatus);
+		return new Orderadmin(user_id,item_id,date);
     }
 	
 }

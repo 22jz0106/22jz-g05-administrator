@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.OrderDAO;
+import dao.UserDAO;
+import model.User;
 
 /**
  * Servlet implementation class Itemadmin
@@ -23,6 +28,25 @@ public class Orderadmin extends HttpServlet {
 	    // フォワード先のJSPのパスを指定
 	    String forward = "/WEB-INF/jsp/order-admin.jsp"; 
 
+	    OrderDAO dao = new OrderDAO();
+	    UserDAO udao = new UserDAO();
+	    List<model.Orderadmin> list = dao.getAllOrders();
+	    List<User> user = null;
+	    System.out.println(list);
+	    for(model.Orderadmin li : list) {
+	    	int id = li.getUser_id();
+	    	System.out.println(id);
+	    	System.out.println(li.getPayment_date());
+	    	if(user == null) {
+	    		user = udao.find(id);
+	    	}
+	    	user.addAll(udao.find(id));
+	    }
+	    for(User us : user) {
+	    	System.out.println(us.getEmail());
+	    }
+	    request.setAttribute("user", user);
+	    request.setAttribute("order", list);
 	    // フォワードを行う
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 	    dispatcher.forward(request, response);

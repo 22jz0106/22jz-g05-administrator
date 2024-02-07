@@ -7,15 +7,15 @@ import java.time.LocalDateTime;
 public class Item  implements Serializable {
 	
 	
-	private int ItemID;
-	private String ItemName;
-	private int ItemPrice;
-	private int ItemStock;
-	private String ItemDESCRIPTION;
-	private String Itemimage_url;
-	private int PRODUCT_TYPE;
+	private int itemID;
+	private String itemName;
+	private int itemPrice;
+	private int itemStock;
+	private String itemDESCRIPTION;
+	private String itemimage_url;
+	private int pRODUCT_TYPE;
 	private int new_item;
-	private int FEATURED_PRODUCTS;
+	private int fEATURED_PRODUCTS;
 	private LocalDateTime cdate;
 	private LocalDateTime  udate;
 	public LocalDateTime getCdate() {
@@ -25,45 +25,45 @@ public class Item  implements Serializable {
 		return udate;
 	}
 	public int getItemID() {
-		return ItemID;
+		return itemID;
 	}
 	public String getItemName() {
-		return ItemName;
+		return itemName;
 	}
 	public int getItemPrice() {
-		return ItemPrice;
+		return itemPrice;
 	}
 	public int getItemStock() {
-		return ItemStock;
+		return itemStock;
 	}
 	public String getItemDESCRIPTION() {
-		return ItemDESCRIPTION;
+		return itemDESCRIPTION;
 	}
 	public String getItemimage_url() {
-		return Itemimage_url;
+		return itemimage_url;
 	}
 	public int getPRODUCT_TYPE() {
-		return PRODUCT_TYPE;
+		return pRODUCT_TYPE;
 	}
 	public int getNew_item() {
 		return new_item;
 	}
 	public int getFEATURED_PRODUCTS() {
-		return FEATURED_PRODUCTS;
+		return fEATURED_PRODUCTS;
 	}
 	public Item() {}
 	public Item(int itemID, String itemName, int itemPrice, int itemStock, String itemDESCRIPTION, String itemimage_url,
 			int pRODUCT_TYPE, int new_item, int fEATURED_PRODUCTS, LocalDateTime cdate, LocalDateTime udate) {
 		super();
-		ItemID = itemID;
-		ItemName = itemName;
-		ItemPrice = itemPrice;
-		ItemStock = itemStock;
-		ItemDESCRIPTION = itemDESCRIPTION;
-		Itemimage_url = itemimage_url;
-		PRODUCT_TYPE = pRODUCT_TYPE;
+		this.itemID = itemID;
+		this.itemName = itemName;
+		this.itemPrice = itemPrice;
+		this.itemStock = itemStock;
+		this.itemDESCRIPTION = itemDESCRIPTION;
+		this.itemimage_url = itemimage_url;
+		this.pRODUCT_TYPE = pRODUCT_TYPE;
 		this.new_item = new_item;
-		FEATURED_PRODUCTS = fEATURED_PRODUCTS;
+		this.fEATURED_PRODUCTS = fEATURED_PRODUCTS;
 		this.cdate = cdate;
 		this.udate = udate;
 	}

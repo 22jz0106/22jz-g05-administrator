@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
@@ -67,10 +68,10 @@
 		<ul class="sidenav">
 			<li><img class="admin-header" src="../../shinor/img/Header.PNG"
 				alt=""></li>
-			<li><a class="active" href="../User-Admin/index.html">ユーザ管理</a></li>
-			<li><a href="../Item-Admin/index.html">商品一覧管理</a></li>
-			<li><a href="../Order-Admin/index.html">注文データ一覧</a></li>
-			<li><a href="#about">ログアウト</a></li>
+			<li><a class="active" href="Useradmin">ユーザ管理</a></li>
+			<li><a href="Itemadmin">商品一覧管理</a></li>
+			<li><a href="Orderadmin">注文データ一覧</a></li>
+			<li><a href="Logout">ログアウト</a></li>
 		</ul>
 
 		<h2 class="product-title">商品管理</h2>
@@ -79,25 +80,15 @@
 				<h3>商品一覧</h3>
 				<input type="text" id="orderSearchInput" oninput="filterOrders()"
 					placeholder="商品を検索...">
-				<div class="product-item">
-					<span>商品ID</span> <span>商品A</span> <span>¥1000</span>
-					<button class="button">詳細</button>
-					<button class="delete-button" value="${item.ItemID}">削除</button>
-				</div>
+				<c:forEach var="item" items="${item_list}">
+    <div class="product-item">
+        <span>${item.itemID}</span> <span>${item.itemName}</span> <span>${item.itemPrice}</span>
+        <button class="button" value="${item.itemID}">更新</button>
+       <button type="button" class="delete-button" onclick="deleteItem(${item.itemID});">削除</button>
+       
 
-				<c:forEach var="Item" items="${item_list}">
-					<div class="product-item">
-						<span>${ item.ItemID }</span> <span>${ item.ItemName }</span> <span>${ item.Price }</span>
-						<button class="button">詳細</button>
-						<button class="delete-button" value="${item.ItemID}">削除</button>
-					</div>
-				</c:forEach>
-
-				<div class="product-item">
-					<span>商品ID</span> <span>商品A</span> <span>¥1000</span>
-					<button class="button">詳細</button>
-					<button class="delete-button" onclick="deleteProduct('商品B')">削除</button>
-				</div>
+    </div>
+</c:forEach>
 			</div>
 
 			<div class="product-container">
@@ -105,15 +96,15 @@
 
 				<div id="newProductForm" class="new-product-form">
 					<h3>新規商品登録</h3>
-					<form id="product-form" enctype="multipart/form-data">
-						<label for="productName">商品名:</label> <input type="text"
-							id="productName" name="productName" required> <label
-							for="productCode">商品コード:</label> <input type="text"
-							id="productCode" name="productCode" required> <label
-							for="price">価格:</label> <input type="number" id="price"
-							name="price" value="1000" required> <label
-							for="stockQuantity">在庫数:</label> <input type="number"
-							id="stockQuantity" name="stockQuantity" min="0" value="0"
+					<form method="POST" id="product-form" enctype="multipart/form-data">
+						<label for="productName">商品名:</label>
+						 <input type="text" id="productName" name="productName" required>
+						  <label for="productCode">商品コード:</label>
+						  <input type="text" id="productCode" name="productCode" required>
+						   <label for="price">価格:</label>
+						   <input type="number" id="price" name="price" value="1000" required>
+						   <label for="stockQuantity">在庫数:</label>
+						   <input type="number"id="stockQuantity" name="stockQuantity" min="0" value="0"
 							required> <label for="description">説明:</label>
 						<textarea id="description" name="description" rows="4" required></textarea>
 
@@ -124,15 +115,45 @@
 							<option value="silver">シルバー</option>
 						</select> <label for="productImage">商品画像:</label> <input type="file"
 							id="productImage" name="productImage" accept="image/*"
-							onchange="previewImage(this)"> <img id="previewImage"
-							src="" alt="商品画像">
+							onchange="previewImage(this)">
 
-						<button type="button" onclick="updateProductDetails()">登録</button>
+						<button type="submit" onclick="updateProductDetails()">登録</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</main>
+	<script>
+	// 商品登録フォームを表示する関数
+	function showAddItemForm() {
+	    document.getElementById('addItemForm').style.display = 'block';
+	
+	    function deleteItem(itemId) {
+	        if (confirm('この商品を削除してもよろしいですか？')) {
+	            // POSTリクエストで削除を実行するためのフォームを動的に作成
+	            var form = document.createElement('form');
+	            document.body.appendChild(form);
+	            form.method = 'POST';
+	            form.action = 'Itemadmin'; // 正しいサーブレットのURLを指定
+
+	            // アクションタイプを指定
+	            var actionInput = document.createElement('input');
+	            actionInput.type = 'hidden';
+	            actionInput.name = 'action';
+	            actionInput.value = 'delete';
+	            form.appendChild(actionInput);
+
+	            // 削除するアイテムIDを指定
+	            var idInput = document.createElement('input');
+	            idInput.type = 'hidden';
+	            idInput.name = 'itemId';
+	            idInput.value = itemId;
+	            form.appendChild(idInput);
+
+	            form.submit();
+	        }
+	    }
+</script>
 </body>
 
 </html>

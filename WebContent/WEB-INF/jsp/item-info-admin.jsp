@@ -17,7 +17,7 @@
        <li><a href="Orderadmin">注文データ一覧</a></li>
       <li><a href="Itemadmin">商品管理</a></li>
       <li><a href="Useradmin">ユーザ管理</a></li>
-      <li><a href="../review画面/index.html">review</a></li>
+      <li><a href="Logout">review</a></li>
     </ul>
   </div>
   <div id="product-details">

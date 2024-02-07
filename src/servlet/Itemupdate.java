@@ -10,36 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ItemDAO;
-import dao.OrderDAO;
-import dao.UseradminDAO;
+import model.Item;
 
 /**
- * Servlet implementation class OrderItem
+ * Servlet implementation class ItemInfo
  */
-@WebServlet("/OrderItem")
-public class OrderInfo extends HttpServlet {
+@WebServlet("/Itemupdate")
+public class Itemupdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/order-info-admin.jsp");
-		dispatcher.forward(request, response);
+	
+		ItemDAO itemDAO = new ItemDAO();
+		System.out.println(itemDAO);
+		int num = Integer.parseInt(request.getParameter("id"));
+		System.out.println(num);
+		Item itemfind = itemDAO.find(num);
+		request.setAttribute("item", itemfind);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text.html; charset=UTF-8");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/update.jsp");
+        dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text.html; charset=UTF-8");
-		
-		OrderDAO order = new OrderDAO();
-		ItemDAO item = new ItemDAO();
-		UseradminDAO useradmin = new UseradminDAO();
 		
 		String productName = request.getParameter("productName");
 		String productCode = request.getParameter("productCode");
@@ -53,13 +56,13 @@ public class OrderInfo extends HttpServlet {
 		String PRODUCT_TYPE = request.getParameter("PRODUCT_TYPE");
 		String new_item = request.getParameter("new_item");
 		
-		Object UserName = request.getParameter("UserName");
-		Object PriceSUM = request.getParameter("PriceSUM");
-		Object ItemSUM = request.getParameter("ItemSUM");
-		Object PaymentStatus = request.getParameter("PaymentStatus");
-		item.set(productName,productCode,price,stock,FEATURED_PRODUCTS,description,size,color,image_url, PRODUCT_TYPE, new_item);
+		System.out.println("stock : " + stock);
+		System.out.println("color : " + color);
 		
+		ItemDAO item = new ItemDAO();
+		item.update(productName,productCode,price,stock,FEATURED_PRODUCTS,description,size,color,image_url, PRODUCT_TYPE, new_item);
 		
+		doGet(request, response);
 	}
 
 }

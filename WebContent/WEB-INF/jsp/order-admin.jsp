@@ -18,7 +18,7 @@
       <li><a class="active" href="Useradmin">ユーザ管理</a></li>
       <li><a href="Itemadmin">商品一覧管理</a></li>
       <li><a href="Orderadmin">注文データ一覧</a></li>
-      <li><a href="#about">Logout</a></li>
+      <li><a href="Logout">Logout</a></li>
     </ul>
     <div class="container">
       <h2 class="order-title">注文データ管理</h2>
@@ -26,24 +26,15 @@
         <div class="order-list">
           <h3>注文データ一覧</h3>
           <input type="text" id="orderSearchInput" oninput="filterOrders()" placeholder="注文を検索...">
+          <c:forEach  var="User" items="${user}">
           <div class="order-item">
-            <p><strong>注文ID:</strong> ${Orderadmin.UserName}</p>
-            <p><strong>顧客名:</strong> 顧客A</p>
-            <p><strong>注文日時:</strong> 2024-01-27 10:30</p>
-            <p><strong>合計数量:</strong> 5</p>
-            <p><strong>合計金額:</strong> ￥5,000</p>
-            <p><strong>支払状態:</strong> 未払い</p>
+            <p><strong>注文ID:</strong> </p>
+            <p><strong>顧客名:</strong>${User.name}</p>
+            <p><strong>注文日時:</strong>${User.updatedAt } </p>
+            <p><strong>配送状態:</strong> 配送中</p>
             <button class="order-button">詳細</button>
           </div>
-          <div class="order-item">
-            <p><strong>注文ID:</strong> 001</p>
-            <p><strong>顧客名:</strong> 磯邊 大志</p>
-            <p><strong>注文日時:</strong> 2024-01-27 10:30</p>
-            <p><strong>合計数量:</strong> 5</p>
-            <p><strong>合計金額:</strong> ￥5,000</p>
-            <p><strong>支払状態:</strong> 支払済み</p>
-            <button class="order-button">詳細</button>
-          </div>
+          </c:forEach>
         </div>
       </div>
     </div>

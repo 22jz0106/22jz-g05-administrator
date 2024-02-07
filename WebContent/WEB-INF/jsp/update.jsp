@@ -21,7 +21,7 @@
   </div>
   <div id="product-details">
     <h2>商品情報更新</h2>
-    <form action="ItemInfo" id="product-form" method="post">
+    <form action="Itemupdate" id="product-form" method="post">
       <label for="productName">商品名:</label>
       <input type="text" id="productName" name="productName" required>
 
